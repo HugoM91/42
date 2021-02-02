@@ -1,24 +1,24 @@
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char				*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int		len;
-	unsigned int		i;
-	char				*out_str;
+	char			*newstr;
+	unsigned int	len;
+	unsigned int	i;
 
-    i = 0;
-	if (!s || !f)
-		return (NULL);
+	i = 0;
 	len = ft_strlen(s);
-	if (!(out_str = malloc(sizeof(char) * (len + 1))))
+	if (s == 0 || f == 0)
+		return (NULL);
+	if (!(newstr = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	while (s[i])
 	{
-		out_str[i] = f(i, s[i]);
+		newstr[i] = f(i, s[i]);
 		i++;
 	}
-	out_str[i] = '\0';
-	return (out_str);
+	newstr[i] = '\0';
+	return (newstr);
 }
 /*
 Applies the function ’f’ to each character of the

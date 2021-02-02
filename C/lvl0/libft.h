@@ -1,43 +1,39 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
-# include <string.h>
 # include <stdio.h>
 
-typedef struct s_list
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5000
+# endif
+
+# ifndef OPEN_MAX
+#  define OPEN_MAX 32
+# endif
+
+typedef struct		s_list
 {
-    void            *content;
-    struct s_list   *next;
-}                   t_list;
+	void			*content;
+	struct s_list	*next;
+}					t_list;
 
-typedef struct s_split_next
-{
-    size_t  start;
-    size_t  lenght;
-}                   t_split_next;
-
-
-// Criar do 0
-//----  rever --- char *ft_strmapi(char const *s, char (*f)(unsigned int, char));
-//char **ft_split(char const *s, char c);
-//void ft_putchar_fd(char c, int fd);
-//void ft_putstr_fd(char *s, int fd);
-//void ft_putendl_fd(char *s, int fd);
-//void ft_putnbr_fd(int n, int fd);
-
-
-// Scratch
+//      Criar do 0
+char            **ft_split(char const *s, char c);
+char            *ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void            ft_putchar_fd(char c, int fd);
+void            ft_putstr_fd(char *s, int fd);
+void            ft_putendl_fd(char *s, int fd);
+void            ft_putnbr_fd(int n, int fd);
 char 			*ft_substr(char const *s, unsigned int start,size_t len);
 char 			*ft_strjoin(char const *s1, char const *s2);
 char            *ft_strtrim(char const *s1, char const *set);
 char 			*ft_itoa(int n);
-// RECODE usuing Malloc
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_strdup(const char *s1);
-// RECODE
 void            *ft_memset(void *b, int c, size_t len);
 void    	    ft_bzero(void *a, size_t n);
 void		    *ft_memcpy(void *dst, const void *src, size_t n);
@@ -60,6 +56,5 @@ int	    		ft_isascii(int c);
 int	    		ft_isprint(int c);
 int		    	ft_tolower(int c);
 int		    	ft_toupper(int c);
-
 
 #endif
