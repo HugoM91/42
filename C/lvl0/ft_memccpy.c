@@ -1,8 +1,6 @@
-
 #include "libft.h"
 
-void
-	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+void *ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
 	size_t	i;
 
@@ -17,10 +15,6 @@ void
 		i++;
 	}
 	return (NULL);
-}
-int	main(void)
-{
-	ft_memccpy("", "", 5, 8);
 }
 /*
 The memccpy() function operates as efficiently as possible on memory areas. 

@@ -1,7 +1,6 @@
 #include "libft.h"
 
-void
-	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	int	i;
 
@@ -27,11 +26,6 @@ void
 	}
 	return (dst);
 }
-int	main(void)
-{
-	ft_memmove( "olkk","",  8);
-}
-
 /*
 
 The C library function void *memmove(void *str1, const void *str2, size_t n) 

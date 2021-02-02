@@ -1,7 +1,8 @@
 #include "libft.h"
+#include <stdio.h>
+#include <string.h>
 
-void
-	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t	i;
     
@@ -15,12 +16,6 @@ void
 	}
 	return (dst);
 }
-int	main(void)
-{
-	ft_memcpy("asd", "", 2);
-}
-
-
 /*
 // Copies "numBytes" bytes from address "from" to address "to"
 void * memcpy(void *to, const void *from, size_t numBytes);

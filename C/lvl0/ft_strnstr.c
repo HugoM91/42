@@ -3,12 +3,10 @@
 char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 {
 	size_t len2;
-    
-    len2 = 0;
-    while(s2!='\0') // mudar para str len (len2++)
-        len2++;
+
 	if (*s2 == '\0')
 		return ((char *)s1);
+	len2 = ft_strlen(s2);
 	while (*s1 != '\0' && len-- >= len2)
 	{
 		if (*s1 == *s2 && ft_strncmp(s1, s2, len2) == 0)
@@ -17,11 +15,6 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 	}
 	return (NULL);
 }
-int	main(void)
-{
-	ft_strnstr("ola", "adeys", 2);
-}
-
 /*
 The strnstr() function locates the	first occurrence of the	null-termi-
      nated string little in the	string big, where not more than	len characters

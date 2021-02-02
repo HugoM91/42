@@ -20,10 +20,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	out_str[i] = '\0';
 	return (out_str);
 }
-int	main(void)
-{
-	ft_strmapi("ola sou o ", '');
-}
 /*
 Applies the function ’f’ to each character of the
 string ’s’ to create a new string (with malloc(3))

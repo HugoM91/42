@@ -1,6 +1,0 @@
-
-ft_strnstr.c
-ft_strmapi
-ft_memmove
-ft_memcpy
-ft_memccpy
