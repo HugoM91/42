@@ -1,6 +1,6 @@
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
+size_t  ft_strlcpy(char *dest, const char *src, size_t dstsize)
 {
 	size_t	i;
 
@@ -16,7 +16,6 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
 	return (ft_strlen(src));
 }
 /*
-
 The strlcpy() and strlcat() functions copy and concatenate strings respectively. 
 They are designed to be safer, more consistent, and less error prone replacements
  for strncpy(3) and strncat(3). Unlike those functions, strlcpy() and strlcat() take 

@@ -3,13 +3,13 @@
 size_t
         ft_strlen(const char *s)
 {
-	int count;
+    int count;
 
 	count = 0;
 	while (*s != '\0')
 	{
-		count++;
-		s++;
+        count++;
+        s++;
 	}
 	return (count);
 }

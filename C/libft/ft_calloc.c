@@ -7,9 +7,9 @@ void	*ft_calloc(size_t count, size_t size)
 	unsigned int	i;
 
 	total = count * size;
+    i = 0;
 	if (!(dst = malloc(total)))
 		return (NULL);
-	i = 0;
 	while (total--)
 	{
 		dst[i] = 0;

@@ -1,13 +1,13 @@
 #include "libft.h"
 
-long int	ft_abs(long int nbr)
+long int    ft_abs(long int nbr)
 {
 	return ((nbr < 0) ? -nbr : nbr);
 }
 
-int			ft_len(long int nbr)
+int         ft_len(long int nbr)
 {
-	int		len;
+	int    len;
 
 	len = (nbr <= 0) ? 1 : 0;
 	while (nbr != 0)
@@ -18,11 +18,11 @@ int			ft_len(long int nbr)
 	return (len);
 }
 
-char		*ft_itoa(int n)
+char        *ft_itoa(int n)
 {
-	int		len;
-	int		sign;
-	char	*c;
+	int    len;
+	int    sign;
+	char   *c;
 
 	sign = (n < 0) ? -1 : 1;
 	len = ft_len(n);
