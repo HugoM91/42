@@ -12,41 +12,24 @@
 
 #include "libft.h"
 
-static unsigned int	is_in_set(char c, char const *set)
+char* ft_strtrim(char const* s1, char const* set)
 {
-	while (*set)
+	size_t	front;
+	size_t	rear;
+	char* str;
+
+	str = 0;
+	if (s1 != 0 && set != 0)
 	{
-		if (c == *set)
-			return (1);
-		set++;
+		front = 0;
+		rear = ft_strlen(s1);
+		while (s1[front] && ft_strchr(set, s1[front]))
+			front++;
+		while (s1[rear - 1] && ft_strchr(set, s1[rear - 1]) && rear > front)
+			rear--;
+		str = (char*)malloc(sizeof(char) * (rear - front + 1));
+		if (str)
+			ft_strlcpy(str, &s1[front], rear - front + 1);
 	}
-	return (0);
-}
-
-char				*ft_strtrim(char const *s1, char const *set)
-{
-	int				i;
-	unsigned int	outstr_size;
-	char			*outstr_start;
-	char			*outstr_end;
-	char			*outstr;
-
-	if (!s1 || !set)
-		return (NULL);
-	i = 0;
-	while (s1[i] && is_in_set(s1[i], set))
-		i++;
-	outstr_start = (char *)&s1[i];
-	if ((i = ft_strlen(s1) - 1) != -1)
-		while (i >= 0 && is_in_set(s1[i], set))
-			i--;
-	outstr_end = (char *)&s1[i];
-	if (!*s1 || outstr_end == outstr_start)
-		outstr_size = 2;
-	else
-		outstr_size = outstr_end - outstr_start + 2;
-	if (!(outstr = malloc(sizeof(char) * outstr_size)))
-		return (NULL);
-	ft_strlcpy(outstr, outstr_start, outstr_size);
-	return (outstr);
+	return (str);
 }
