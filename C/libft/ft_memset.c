@@ -6,12 +6,11 @@
 /*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 10:32:33 by hmalaqui          #+#    #+#             */
-/*   Updated: 2021/02/13 10:41:21 by hmalaqui         ###   ########.fr       */
+/*   Updated: 2021/02/13 11:34:51 by hmalaqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
 char	*ft_strdup(const char *s1)
 {
@@ -33,20 +32,19 @@ char	*ft_strdup(const char *s1)
 	dest[i] = '\0';
 	return (dest);
 }
+
 void	*ft_memset(void *b, char c, int len)
 {
-	char *b_char; 
-		
-	*b_char = (char *)b;
-	if (b == NULL) 
-		return NULL;
+	char *b_char;
 
-	while(*b_char && len > 0)
+	*b_char = (char *)b;
+	if (b == NULL)
+		return (NULL);
+	while (*b_char && len > 0)
 	{
- 		*b_char = c;
+		*b_char = c;
 		b_char++;
 		len--;
 	}
-
 	return (b);
 }

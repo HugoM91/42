@@ -176,9 +176,9 @@ void Myprintf(char* format,...)
 
 int main() 
 { 
-	int a = -42;
-	Myprintf("%d", a); 
-    printf("\n%d", a); 	
+	int a = 42;
+	Myprintf("%u", a); 
+    printf("\n%u", a); 	
 	return 0;
 } 
 /*

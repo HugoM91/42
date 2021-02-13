@@ -6,13 +6,13 @@
 /*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 10:17:28 by hmalaqui          #+#    #+#             */
-/*   Updated: 2021/02/13 10:19:28 by hmalaqui         ###   ########.fr       */
+/*   Updated: 2021/02/13 11:42:45 by hmalaqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char			**ft_malloc_error(char **tab)
+static char		**ft_malloc_error(char **tab)
 {
 	unsigned int	i;
 
@@ -26,7 +26,7 @@ static char			**ft_malloc_error(char **tab)
 	return (NULL);
 }
 
-static unsigned int	ft_get_nb_strs(char const *s, char c)
+unsigned int	ft_get_nb_strs(char const *s, char c)
 {
 	unsigned int	i;
 	unsigned int	nb_strs;
@@ -53,20 +53,20 @@ static unsigned int	ft_get_nb_strs(char const *s, char c)
 	return (nb_strs);
 }
 
-static void	ft_get_next_str(char **next_str, unsigned int *next_str_len, char c)
+static void		ft_get_next_str(char **n_str, unsigned int *n_len, char c)
 {
 	unsigned int i;
 
-	*next_str += *next_str_len;
-	*next_str_len = 0;
+	*n_str += *n_len;
+	*n_len = 0;
 	i = 0;
-	while (**next_str && **next_str == c)
-		(*next_str)++;
-	while ((*next_str)[i])
+	while (**n_str && **n_str == c)
+		(*n_str)++;
+	while ((*n_str)[i])
 	{
-		if ((*next_str)[i] == c)
+		if ((*n_str)[i] == c)
 			return ;
-		(*next_str_len)++;
+		(*n_len)++;
 		i++;
 	}
 }

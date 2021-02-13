@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/13 11:05:45 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/02/13 11:05:48 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
@@ -26,22 +38,3 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	return (dst);
 }
-/*
-
-The C library function void *memmove(void *str1, const void *str2, size_t n) 
-copies n characters from str2 to str1, but for overlapping memory blocks, 
-memmove() is a safer approach than memcpy().
-
-
-memcpy vs memmove
-main
-{
-    char a[16];
-    char b[16];
-
-    memcpy(a,b,16);           // valid
-    memmove(a,b,16);          // Also valid, but slower than memcpy.
-    memcpy(&a[0], &a[1],10);  // Not valid since it overlaps.
-    memmove(&a[0], &a[1],10); // valid. 
-}
-*/
