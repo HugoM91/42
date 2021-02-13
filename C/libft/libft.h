@@ -6,7 +6,7 @@
 /*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 11:43:16 by hmalaqui          #+#    #+#             */
-/*   Updated: 2021/02/13 11:53:34 by hmalaqui         ###   ########.fr       */
+/*   Updated: 2021/02/13 12:02:48 by hmalaqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct	s_list
 char			**ft_split(char const *s, char c);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void			ft_putchar_fd(char c, int fd);
-void			ft_putstr_fd(char *s, int fd);
+void			ft_putstr_fd(char *str, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int nb, int fd);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
