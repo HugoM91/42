@@ -1,12 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/13 10:35:01 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/02/13 10:35:02 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t	i;
-    
-    i = 0;
+
+	i = 0;
 	if (!dst)
 		return (NULL);
 	while (i < n)
@@ -16,8 +26,3 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	}
 	return (dst);
 }
-/*
-// Copies "numBytes" bytes from address "from" to address "to"
-void * memcpy(void *to, const void *from, size_t numBytes);
-
-*/

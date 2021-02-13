@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/13 10:27:04 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/02/13 10:27:06 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strnstr(const char *s1, const char *s2, size_t len)
@@ -15,10 +27,3 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 	}
 	return (NULL);
 }
-/*
-The strnstr() function locates the	first occurrence of the	null-termi-
-     nated string little in the	string big, where not more than	len characters
-     are searched.  Characters that appear after a `\0'	character are not
-     searched.	Since the strnstr() function is	a FreeBSD specific API,	it
-     should only be used when portability is not a concern.
-*/

@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/13 10:28:26 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/02/13 10:36:12 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
 	size_t	i;
-	
+
 	i = 0;
-	while(s[i] != '\0')
+	while (s[i] != '\0')
 		i++;
 	if ((char)c == '\0')
 		return ((char *)s + i);
@@ -14,8 +26,3 @@ char	*ft_strrchr(const char *s, int c)
 			return ((char *)(s + i));
 	return (NULL);
 }
-/*
-The C library function char *strrchr(const char *str, int c) searches for the last occurrence of the character c (an unsigned char) in the string pointed to, by the argument str.
-
-This function returns a pointer to the last occurrence of character in str. If the value is not found, the function returns a null pointer.
-*/

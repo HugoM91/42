@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/13 10:15:49 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/02/13 10:15:52 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char                *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char			*newstr;
 	unsigned int	len;
@@ -20,8 +32,3 @@ char                *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	newstr[i] = '\0';
 	return (newstr);
 }
-/*
-Applies the function ’f’ to each character of the
-string ’s’ to create a new string (with malloc(3))
-resulting from successive applications of ’f’.
-*/

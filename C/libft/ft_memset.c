@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/13 10:32:33 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/02/13 10:41:21 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -23,28 +35,18 @@ char	*ft_strdup(const char *s1)
 }
 void	*ft_memset(void *b, char c, int len)
 {
-    char *b_char = (char *)b;
+	char *b_char; 
+		
+	*b_char = (char *)b;
+	if (b == NULL) 
+		return NULL;
 
-    if (b == NULL) return NULL;
+	while(*b_char && len > 0)
+	{
+ 		*b_char = c;
+		b_char++;
+		len--;
+	}
 
-    while(*b_char && len > 0)
-    {
-        *b_char = c;
-        b_char++;
-        len--;
-    }
-
-    return b; //as this pointer has not changed
+	return (b);
 }
-/*
-memset() is used to fill a block of memory with a particular value.
-The syntax of memset() function is as follows :
-
-// ptr ==> Starting address of memory to be filled
-// x   ==> Value to be filled
-// n   ==> Number of bytes to be filled starting 
-//         from ptr to be filled
-void *memset(void *ptr, int x, size_t n);
-
-Note that ptr is a void pointer, so that we can pass any type of pointer to this function.
-*/

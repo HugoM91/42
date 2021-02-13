@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/13 10:33:12 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/02/13 10:33:14 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 void	*ft_calloc(size_t count, size_t size)
@@ -7,7 +19,7 @@ void	*ft_calloc(size_t count, size_t size)
 	unsigned int	i;
 
 	total = count * size;
-    i = 0;
+	i = 0;
 	if (!(dst = malloc(total)))
 		return (NULL);
 	while (total--)
@@ -17,7 +29,3 @@ void	*ft_calloc(size_t count, size_t size)
 	}
 	return ((void *)dst);
 }
-
-/*
-set memoru blocks to 0 instead of random values
-*/

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/13 10:22:56 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/02/13 10:23:03 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static unsigned int	is_in_set(char c, char const *set)
@@ -38,8 +50,3 @@ char				*ft_strtrim(char const *s1, char const *set)
 	ft_strlcpy(outstr, outstr_start, outstr_size);
 	return (outstr);
 }
-/*
-Allocates (with malloc(3)) and returns a copy of
-’s1’ with the characters specified in ’set’ removed
-from the beginning and the end of the string.
-*/
