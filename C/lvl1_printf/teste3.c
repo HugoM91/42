@@ -176,9 +176,13 @@ void Myprintf(char* format,...)
 
 int main() 
 { 
-	int a = 42;
-	Myprintf("%u", a); 
-    printf("\n%u", a); 	
+	int a = 425;
+	int b = 99999;
+	Myprintf("%d", a); 
+	printf("\n0 - %02d\n", 1);
+	printf( "- - %-5d - %-5d\n", 1, 2 );
+	printf( ". - %.5d - %.5d\n", 1, 2 );
+	printf( "* - %*5d - %*57d\n", 1, 2 );
 	return 0;
 } 
 /*
@@ -194,4 +198,34 @@ int main()
  * 
  * u - Unsigned integer (unsigned int, unsigned short int, unsigned, long int) value
  * 
+ * 
+ * https://www.cprogramming.com/tutorial/printf-format-strings.html
+ * 
+ * 
+ * 
+ * #######   The Minus Sign Flag: -
+Finally, the minus sign will cause the output to be left-justified. This is important if you are using the width specifier and you want the padding to appear at the end of the output instead of the beginning:
+
+1
+printf( "|%-5d|%-5d|\n", 1, 2 );
+displays:
+
+1
+|1    |2    |
+With the padding at the end of the output
+
+
+###### The Zero Flag: 0
+Using 0 will force the number to be padded with 0s. This only really matters if you use the width setting to ask for a minimal width for your number. For example, if you write:
+
+1
+printf( "%05d\n", 10 );
+You would get:
+
+1
+00010
+
+
+
+
  */
