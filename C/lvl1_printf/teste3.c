@@ -176,9 +176,11 @@ void Myprintf(char* format,...)
 
 int main() 
 { 
-	int a = 425;
+	char *a = "oal tudo mbem";
 	int b = 99999;
-	Myprintf("%d", a); 
+	Myprintf(" ORIGINAL %c", a[0]); 
+    
+    
 	printf("\n0 - %02d\n", 1);
 	printf( "- - %-5d - %-5d\n", 1, 2 );
 	printf( ". - %.5d - %.5d\n", 1, 2 );
