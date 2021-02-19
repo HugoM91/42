@@ -192,12 +192,12 @@ int main()
  * c - Single character (char) value
  * s - String constant or variable (char*)
  * d - Integer (int, short int, long int) - value
- * p - Memory location or address in hexadecimal (pointer)
+ * 
  * i - Integer (int, short int, long int) - value
  * x - Unsigned hexadecimal value, lowercase a–f, no leading 0 or x
  * X - Unsigned hexadecimal value, uppercase A–F, no leading 0 or X
  * 
- * 
+ * p -  
  * u - Unsigned integer (unsigned int, unsigned short int, unsigned, long int) value
  * 
  * 
@@ -225,7 +225,7 @@ printf( "%05d\n", 10 );
 You would get:
 
 1
-00010
+00010:
 
 
 
