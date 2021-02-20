@@ -117,8 +117,6 @@ char		*ft_itoa(long long n, int base)
 			len--;
 		}
 	}
-
-			printf("\n\n ===== %s ==== \n\n", c);
 	return (c);
 }
 
@@ -129,7 +127,8 @@ char	*format_x(char *c)
 	int i = 0;
 	int h;
 	int j = 0;
-dest=malloc(sizeof(char)*(len+1));
+
+	dest=malloc(sizeof(char)*(len+1));
 	while(i < len)
 	{
 		if(c[i] == '0' && i < 2)
@@ -170,6 +169,9 @@ void Myprintf(char* format,...)
 		//Module 2: Fetching and executing arguments
 		switch(*traverse) 
 		{ 
+			case '%': i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
+						ft_putchar('%');
+						break;
 			case 'c' : i = va_arg(arg,int);		//Fetch char argument
 						ft_putchar(i);
 						break;
@@ -197,7 +199,10 @@ void Myprintf(char* format,...)
 						ft_putstr(format_x(ft_itoa(i,16)));
 						break; 
             case 'X': i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
-						ft_putstr(ft_toupper(ft_itoa(i,16)));
+						ft_putstr(format_x(ft_toupper(ft_itoa(i,16))));
+						break;
+			case 'p': i = va_arg(arg,long long int); //Fetch Hexadecimal representation
+						ft_putstr(format_x(ft_itoa(i,16)));
 						break;
 			case 'u': i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
 						ft_putstr(ft_itoa(i,10));
@@ -212,13 +217,11 @@ void Myprintf(char* format,...)
 
 int main() 
 { 
-	char *a = "oal tudo mbem";
-	int b = 99999;
-	Myprintf(" ORIGINAL %c", a[0]);     
-	printf("\n\n %p", &a);
-	printf("\n---------\n");
-	Myprintf("\n\n%x", "aa55555");
-	printf("\n\n%x", "aa55555");
+	char *c = "99999";
+	int b = 9999879;
+	//printf("\n\n %p \n\n",9999879);
+	printf("\n\n %llx \n\n", &c);
+	printf("\n\n %p \n\n", &c);
 
 	return 0;
 } 
@@ -235,34 +238,25 @@ int main()
  * p - Pointer  
  * u - Unsigned integer (unsigned int, unsigned short int, unsigned, long int) value
  * 
- * 
  * https://www.cprogramming.com/tutorial/printf-format-strings.html
  * 
  * 
  * 
  * #######   The Minus Sign Flag: -
 Finally, the minus sign will cause the output to be left-justified. This is important if you are using the width specifier and you want the padding to appear at the end of the output instead of the beginning:
-
 1
 printf( "|%-5d|%-5d|\n", 1, 2 );
 displays:
-
 1
 |1    |2    |
 With the padding at the end of the output
-
-
 ###### The Zero Flag: 0
 Using 0 will force the number to be padded with 0s. This only really matters if you use the width setting to ask for a minimal width for your number. For example, if you write:
-
 1
 printf( "%05d\n", 10 );
 You would get:
-
 1
 00010:
-
-
 https://docs.microsoft.com/en-us/cpp/c-runtime-library/format-specification-syntax-printf-and-wprintf-functions?view=msvc-160
 
  */
