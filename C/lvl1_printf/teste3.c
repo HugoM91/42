@@ -2,9 +2,11 @@
 #include<stdarg.h>
 #include<unistd.h>
 #include<stdlib.h>
+#include<stdint.h>
 
 void Myprintf(char *,...); 				//Our printf function
 char* convert(unsigned int, int); 		//Convert integer number into octal, hex, etc.
+
 
 int	ft_strlen(const char *s)
 {
@@ -88,7 +90,7 @@ int		ft_len(long long nbr)
 	return (len);
 }
 
-char		*ft_itoa(long long n, int base)
+char		*ft_itoa(unsigned long n, int base)
 {
 	int		len;
 	char	*c;
@@ -120,6 +122,34 @@ char		*ft_itoa(long long n, int base)
 	return (c);
 }
 
+char	*ft_utoa(unsigned int n)
+{
+	char			*p;
+	int				size;
+	unsigned int	x;
+
+	x = n;
+	size = 0;
+	while (x > 10)
+	{
+		x /= 10;
+		size++;
+	}
+	p = (char *)malloc(sizeof(p) * (size + 1));
+	if (p)
+	{
+		p[size + 1] = '\0';
+		while (size >= 0)
+		{
+			x = n % 10;
+			p[size] = 48 + x;
+			n = n / 10;
+			size--;
+		}
+	}
+	return (p);
+}
+
 char	*format_x(char *c)
 {
 	int len = ft_strlen(c);
@@ -144,12 +174,16 @@ char	*format_x(char *c)
 	return (dest);
 }
 
+//-----------------------
+
+
 
 void Myprintf(char* format,...) 
 { 
 	char *traverse; 
 	unsigned int i; 
 	char *s; 
+	int k = 0;
 	
 	//Module 1: Initializing Myprintf's arguments 
 	va_list arg; 
@@ -164,6 +198,7 @@ void Myprintf(char* format,...)
 			traverse++; 
 		} 
 		
+
 		traverse++; 
 		
 		//Module 2: Fetching and executing arguments
@@ -198,14 +233,15 @@ void Myprintf(char* format,...)
 			case 'x': i = va_arg(arg,long long); //Fetch Hexadecimal representation
 						ft_putstr(format_x(ft_itoa(i,16)));
 						break; 
-            case 'X': i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
+            case 'X': i = va_arg(arg,long long); //Fetch Hexadecimal representation
 						ft_putstr(format_x(ft_toupper(ft_itoa(i,16))));
-						break;
-			case 'p': i = va_arg(arg,long long int); //Fetch Hexadecimal representation
-						ft_putstr(format_x(ft_itoa(i,16)));
 						break;
 			case 'u': i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
 						ft_putstr(ft_itoa(i,10));
+						break;
+
+			case 'p': i = va_arg(arg, unsigned int); 
+						ft_putstr(ft_itoa(i,16));
 						break;
 		}	
 	} 
@@ -213,19 +249,59 @@ void Myprintf(char* format,...)
 	//Module 3: Closing argument list to necessary clean-up
 	va_end(arg); 
 } 
+// -----------------------------------------------
+
 
 
 int main() 
 { 
-	char *c = "99999";
-	int b = 9999879;
-	//printf("\n\n %p \n\n",9999879);
-	printf("\n\n %llx \n\n", &c);
-	printf("\n\n %p \n\n", &c);
+	/*
+	char *c = "0sadsa asdas asda d";
+	printf("\n\n%p\n", &c);
+	Myprintf("\n\n%p", &c);
+	char *p;
+	*(char ***) &p = &c; 
+	p = (char *) &c;
+	printf("\n\n %s", &p);
+	
+	int a =10;
+	int *p = &a;
+	int **pp = &p;
+	printf("addr: %p\n", pp);
+	Myprintf("%p",(long long)pp);
+	//printf("addr: 0x%u", (unsigned)pp);
+	*/
 
+	char *c = "0sadsa asdas asda d";
+	char *p = (char *)&c;
+
+	char first_byte = p[0];
+	char second_byte = p[1];
+
+	int o = 18855;
+
+	printf("\n%p\n", &o);
+	Myprintf("%p", &o);
 	return 0;
 } 
+
+
+
+
 /*
+
+• It must not do the buffer management like the real printf
+• It will manage the following conversions: cspdiuxX%
+• It will manage any combination of the following flags: ’-0.*’ and minimum field
+width with all conversions
+FLAGS
+
+	- = Left-justify within the given field width; Right justification is the default (see width sub-specifier).
+	0 = Left-pads the number with zeroes (0) instead of spaces, where padding is specified (see width sub-specifier).
+	. = Precision
+	* = The width is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted.
+
+
  * % - The percent character, %
  * c - Single character (char) value
  * s - String constant or variable (char*)
