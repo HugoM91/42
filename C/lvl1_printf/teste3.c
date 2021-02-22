@@ -7,7 +7,6 @@
 void Myprintf(char *,...); 				//Our printf function
 char* convert(unsigned int, int); 		//Convert integer number into octal, hex, etc.
 
-
 int	ft_strlen(const char *s)
 {
 	int count;
@@ -20,6 +19,35 @@ int	ft_strlen(const char *s)
 	}
 	return (count);
 }
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	unsigned int	s1_len;
+	unsigned int	s2_len;
+	unsigned int	i;
+	unsigned int	j;
+	char			*dest;
+
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	i = 0;
+	j = -1;
+	if (!s1 || !s2)
+		return (NULL);
+	if (!(dest = malloc(sizeof(char) * (s1_len + s2_len + 1))))
+		return (NULL);
+	while (s1[i])
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	while (s2[++j])
+		dest[i++] = s2[j];
+	dest[i] = '\0';
+	return (dest);
+}
+
+
 
 char*
         ft_toupper(char *str)
@@ -77,7 +105,7 @@ long int	ft_abs(long int nbr)
 	return ((nbr < 0) ? -nbr : nbr);
 }
 
-int		ft_len(long long nbr)
+int		ft_len(int nbr)
 {
 	int		len;
 
@@ -90,10 +118,96 @@ int		ft_len(long long nbr)
 	return (len);
 }
 
-char		*ft_itoa(unsigned long n, int base)
+int		ft_len_x(long long nbr)
+{
+	int		len;
+
+	len = (nbr <= 0) ? 1 : 0;
+	while (nbr != 0)
+	{
+		nbr = nbr / 10;
+		len++;
+	}
+	return (len);
+}
+
+char		*ft_itoa_d(int n, int base)
 {
 	int		len;
 	char	*c;
+	static char Representation[]= "0123456789abcdef";
+	static char Representation2[]= "0123456789";
+	int flag;
+	
+	if ((int)n < 0)
+	{
+		flag = 1;
+		n = n * -1;
+	}
+	len = ft_len(n);
+	c = (char *)malloc(sizeof(char) * len + 1);
+	if (c == NULL)
+		return (0);
+	c[len] = '\0';
+	len--;
+	if (base == 10){
+		while (len >= 0)
+		{
+			c[len] = Representation2[n % base];
+			n = n / base;
+			len--;
+		}
+	}
+	else if (base == 16){
+		while (len >= 0)
+		{
+			c[len] = Representation[n % base];
+			n = n / base;
+			len--;
+		}
+	}
+	if (flag == 1)
+		c = ft_strjoin("-", c);
+	return (c);
+}
+
+char		*ft_itoa_x(unsigned long n, int base)
+{
+	int		len;
+	char	*c;
+	static char Representation[]= "0123456789abcdef";
+	static char Representation2[]= "0123456789";
+
+	len = ft_len_x(n);
+	c = (char *)malloc(sizeof(char) * len + 1);
+	if (c == NULL)
+		return (0);
+	c[len] = '\0';
+	len--;
+	if (base == 10){
+		while (len >= 0)
+		{
+			c[len] = Representation2[n % base];
+			n = n / base;
+			len--;
+		}
+	}
+	else if (base == 16){
+		while (len >= 0)
+		{
+			c[len] = Representation[n % base];
+			n = n / base;
+			len--;
+		}
+	}
+	return (c);
+}
+
+
+char		*ft_itoa_pointer(unsigned long n, long long base)
+{
+	long long		len;
+	unsigned char	*c;
 	static char Representation[]= "0123456789abcdef";
 	static char Representation2[]= "0123456789";
 
@@ -217,7 +331,7 @@ void Myprintf(char* format,...)
 	va_start(arg, format); 
 	traverse = format;
 
-	while(traverse != '\0')
+	while(*traverse != '\0')
 	{
 		while( *traverse != '%' ) 
 		{ 
@@ -245,7 +359,23 @@ void Myprintf(char* format,...)
 			}
 			
 		}
-		printf("\n%c\n", *traverse);
+
+		if (*traverse == '.')
+		{
+			traverse++;
+			while (*traverse >= '0' && *traverse <= '9')
+			{
+				int h = ft_atoi(traverse);
+				while(h > 0)
+				{
+					ft_putchar('0');
+					h--;
+				}
+				traverse++;
+				
+			}
+			
+		}
 		if (*traverse == '%')
 		{
 			i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
@@ -264,37 +394,34 @@ void Myprintf(char* format,...)
 			ft_putstr(s);
 			break;
 		}
-		if (*traverse == 'i' && *traverse == 'd')
+		if (*traverse == 'i' || *traverse == 'd')
 		{
-			if(i<0) 
-			{ 
-				i = -i;
-			} 
-            ft_putstr(ft_itoa(i,10));
+			i = va_arg(arg, unsigned int);
+            ft_putstr(ft_itoa_d(i,10));
 			break;
 		}
 		if (*traverse == 'x')
 		{
 			i = va_arg(arg,long long); //Fetch Hexadecimal representation
-			ft_putstr(format_x(ft_itoa(i,16)));
+			ft_putstr(format_x(ft_itoa_x(i,16)));
 			break;
 		}
 		if (*traverse == 'X')
 		{
 			i = va_arg(arg, long long); //Fetch Hexadecimal representation
-			ft_putstr(format_x(ft_toupper(ft_itoa(i,16))));
+			ft_putstr(format_x(ft_toupper(ft_itoa_x(i,16))));
 			break;
 		}
 		if (*traverse == 'u')
 		{
 			i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
-			ft_putstr(ft_itoa(i,10));
+			ft_putstr(ft_itoa_x(i,10));
 			break;
 		}
 		if (*traverse == 'p')
 		{
-			i = va_arg(arg,long long); //Fetch Hexadecimal representation
-			ft_putstr(format_x(ft_itoa(i,16)));
+			i = va_arg(arg,long long int); //Fetch Hexadecimal representation
+			ft_putstr(format_x(ft_itoa_pointer(i,16)));
 			break;
 		}
 		traverse++;
@@ -333,8 +460,11 @@ int main()
 
 	int o = 18855;
 
-	printf("%05d\n", 123);
-	Myprintf("%i", 11);
+	printf("\n1 = %d\n", -11);
+	Myprintf("1 = %d", -11);
+	printf("\n2 = %x\n", -12);
+	Myprintf("2 = %x", -12);
+	
 	return 0;
 } 
 
