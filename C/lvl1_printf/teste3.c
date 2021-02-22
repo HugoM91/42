@@ -122,6 +122,33 @@ char		*ft_itoa(unsigned long n, int base)
 	return (c);
 }
 
+int		ft_atoi(const char *str)
+{
+	int neg;
+	int i;
+	int num;
+
+	i = 0;
+	neg = 1;
+	num = 0;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
+			|| str[i] == '\f' || str[i] == '\r')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			neg *= -1;
+		i++;
+	}
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		num = num * 10 + (str[i] - 48);
+		i++;
+	}
+	return (num * neg);
+}
+
+
 char	*ft_utoa(unsigned int n)
 {
 	char			*p;
@@ -188,69 +215,95 @@ void Myprintf(char* format,...)
 	//Module 1: Initializing Myprintf's arguments 
 	va_list arg; 
 	va_start(arg, format); 
+	traverse = format;
 
-	for(traverse = format; *traverse != '\0'; traverse++) 
+	while(traverse != '\0')
 	{
-
 		while( *traverse != '%' ) 
 		{ 
  			ft_putchar(*traverse);
 			traverse++; 
 		} 
-		
 
 		traverse++; 
 		
-		//Module 2: Fetching and executing arguments
-		switch(*traverse) 
-		{ 
-			case '%': i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
-						ft_putchar('%');
-						break;
-			case 'c' : i = va_arg(arg,int);		//Fetch char argument
-						ft_putchar(i);
-						break;
-            case 's': s = va_arg(arg,char *); 		//Fetch string
-						ft_putstr(s);
-						break;
-			case 'd' : i = va_arg(arg,int); 		//Fetch Decimal/Integer argument
-						printf("VALOR DO I %u\n", i);
-						if(i<0) 
-						{ 
-							i = -i;
-						} 
-						printf("ITOA RESULT %s\n", ft_itoa(i,10));
-                        ft_putstr(ft_itoa(i,10));
-						break; 
-            case 'i' : i = va_arg(arg,int); 		//Fetch Decimal/Integer argument
-						
-						if(i<0) 
-						{ 
-							i = -i;
-						} 
-                        ft_putstr(ft_itoa(i,10));
-						break; 
-			case 'x': i = va_arg(arg,long long); //Fetch Hexadecimal representation
-						ft_putstr(format_x(ft_itoa(i,16)));
-						break; 
-            case 'X': i = va_arg(arg,long long); //Fetch Hexadecimal representation
-						ft_putstr(format_x(ft_toupper(ft_itoa(i,16))));
-						break;
-			case 'u': i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
-						ft_putstr(ft_itoa(i,10));
-						break;
 
-			case 'p': i = va_arg(arg, unsigned int); 
-						ft_putstr(ft_itoa(i,16));
-						break;
-		}	
-	} 
-	
+		
+		if (*traverse == '0')
+		{
+			traverse++;
+			while (*traverse >= '0' && *traverse <= '9')
+			{
+				int h = ft_atoi(traverse);
+				while(h > 0)
+				{
+					ft_putchar('0');
+					h--;
+				}
+				traverse++;
+				
+			}
+			
+		}
+		printf("\n%c\n", *traverse);
+		if (*traverse == '%')
+		{
+			i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
+			ft_putchar('%');
+			break;
+		}
+		if (*traverse == 'c')
+		{
+			i = va_arg(arg,int); //Fetch Hexadecimal representation
+			ft_putchar(i);
+			break;
+		}
+		if (*traverse == 's')
+		{
+			s = va_arg(arg,char *); //Fetch Hexadecimal representation
+			ft_putstr(s);
+			break;
+		}
+		if (*traverse == 'i' && *traverse == 'd')
+		{
+			if(i<0) 
+			{ 
+				i = -i;
+			} 
+            ft_putstr(ft_itoa(i,10));
+			break;
+		}
+		if (*traverse == 'x')
+		{
+			i = va_arg(arg,long long); //Fetch Hexadecimal representation
+			ft_putstr(format_x(ft_itoa(i,16)));
+			break;
+		}
+		if (*traverse == 'X')
+		{
+			i = va_arg(arg, long long); //Fetch Hexadecimal representation
+			ft_putstr(format_x(ft_toupper(ft_itoa(i,16))));
+			break;
+		}
+		if (*traverse == 'u')
+		{
+			i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
+			ft_putstr(ft_itoa(i,10));
+			break;
+		}
+		if (*traverse == 'p')
+		{
+			i = va_arg(arg,long long); //Fetch Hexadecimal representation
+			ft_putstr(format_x(ft_itoa(i,16)));
+			break;
+		}
+		traverse++;
+	}
+
 	//Module 3: Closing argument list to necessary clean-up
 	va_end(arg); 
 } 
 // -----------------------------------------------
-
 
 
 int main() 
@@ -280,8 +333,8 @@ int main()
 
 	int o = 18855;
 
-	printf("\n%p\n", &o);
-	Myprintf("%p", &o);
+	printf("%05d\n", 123);
+	Myprintf("%i", 11);
 	return 0;
 } 
 
