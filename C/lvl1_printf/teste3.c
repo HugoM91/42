@@ -4,16 +4,11 @@
 #include<stdlib.h>
 #include<stdint.h>
 
-
 typedef struct ordem {
 	char*	to_print;
 	int		lenght;
 	char*	flag;
 }	ordem;
-
-
-void Myprintf(char *,...); 				//Our printf function
-char* convert(unsigned int, int); 		//Convert integer number into octal, hex, etc.
 
 int	ft_strlen(const char *s)
 {
@@ -292,6 +287,7 @@ void Myprintf(char* format,...)
 	char *s; 
 	long long l;
 	int k = 0;
+	ordem um;
 	
 	//Module 1: Initializing Myprintf's arguments 
 	va_list arg; 
@@ -361,7 +357,7 @@ void Myprintf(char* format,...)
 		if (*traverse == 'i' || *traverse == 'd')
 		{
 			i = va_arg(arg, unsigned int);
-			ft_strlen(ft_itoa_d(i,10));
+			um.lenght = ft_strlen(ft_itoa_d(i,10));
             ft_putstr(ft_itoa_d(i,10));
 			break;
 		}
@@ -389,7 +385,8 @@ void Myprintf(char* format,...)
 		if (*traverse == 'p')
 		{
 			l = va_arg(arg,long long int); //Fetch Hexadecimal representation
-			ft_strlen(ft_itoa_x(l,16));
+			um.lenght = ft_strlen(ft_itoa_x(l,16));
+			
 			ft_putstr("0x");
 			ft_putstr(format_x(ft_itoa_x(l,16)));
 			break;
@@ -398,7 +395,7 @@ void Myprintf(char* format,...)
 		if(*traverse == '\0')
 			break;
 	}
-
+	printf("\n%d\n", um.lenght);
 	//Module 3: Closing argument list to necessary clean-up
 	va_end(arg); 
 } 
@@ -417,7 +414,7 @@ int main()
 	//printf("\n1 = %d , 2 = %d\n ", 1, 22);
 	//Myprintf("1 = %05d dfddfsf %i ff", 20);
 	//printf("%*.*d\n", 15, -2, 20);
-	Myprintf("%05d", 20);
+	printf("%02s", "20202");
 	return 0;
 } 
 /*
@@ -432,7 +429,6 @@ FLAGS
 	0 = Left-pads the number with zeroes (0) instead of spaces, where padding is specified (see width sub-specifier).
 	. = Precision
 	* = The width is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted.
-
 
  * % - The percent character, %
  * c - Single character (char) value
