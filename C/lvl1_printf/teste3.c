@@ -6,13 +6,9 @@
 
 
 typedef struct ordem {
-
-	char*	flag;
-	int		min_width;
-	int 	precision;
-	int		max_width;
-	char*	type;
 	char*	to_print;
+	int		lenght;
+	char*	flag;
 }	ordem;
 
 
@@ -289,9 +285,6 @@ char	*format_x(char *c)
 }
 
 //-----------------------
-
-
-
 void Myprintf(char* format,...) 
 { 
 	char *traverse; 
@@ -311,10 +304,10 @@ void Myprintf(char* format,...)
 		{ 
  			ft_putchar(*traverse);
 			traverse++; 
-		} 
+		}
 
 		traverse++; 
-				
+
 		if (*traverse == '0')
 		{
 			traverse++;
@@ -330,7 +323,6 @@ void Myprintf(char* format,...)
 				break;
 			}	
 		}
-
 		if (*traverse == '.')
 		{
 			traverse++;
@@ -345,7 +337,6 @@ void Myprintf(char* format,...)
 				traverse++;
 				break;
 			}
-			
 		}
 		if (*traverse == '%')
 		{
@@ -356,24 +347,28 @@ void Myprintf(char* format,...)
 		if (*traverse == 'c')
 		{
 			i = va_arg(arg,int); //Fetch Hexadecimal representation
+			int len = 1;
 			ft_putchar(i);
 			break;
 		}
 		if (*traverse == 's')
 		{
 			s = va_arg(arg,char *); //Fetch Hexadecimal representation
+			ft_strlen(s);
 			ft_putstr(s);
 			break;
 		}
 		if (*traverse == 'i' || *traverse == 'd')
 		{
 			i = va_arg(arg, unsigned int);
+			ft_strlen(ft_itoa_d(i,10));
             ft_putstr(ft_itoa_d(i,10));
 			break;
 		}
 		if (*traverse == 'x')
 		{
 			i = va_arg(arg,long long); //Fetch Hexadecimal representation
+			ft_strlen(ft_itoa_x(i,16));
 			ft_putstr(format_x(ft_itoa_x(i,16)));
 			break;
 		}
@@ -381,129 +376,27 @@ void Myprintf(char* format,...)
 		{
 			i = va_arg(arg, long long); //Fetch Hexadecimal representation
 			ft_putstr(format_x(ft_toupper(ft_itoa_x(i,16))));
+			ft_strlen(ft_itoa_x(i,16));
 			break;
 		}
 		if (*traverse == 'u')
 		{
 			i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
+			ft_strlen(ft_itoa_x(i,10));
 			ft_putstr(ft_itoa_x(i,10));
 			break;
 		}
 		if (*traverse == 'p')
 		{
 			l = va_arg(arg,long long int); //Fetch Hexadecimal representation
+			ft_strlen(ft_itoa_x(l,16));
 			ft_putstr("0x");
 			ft_putstr(format_x(ft_itoa_x(l,16)));
 			break;
 		}
 		traverse++;
-	}
-
-	//Module 3: Closing argument list to necessary clean-up
-	va_end(arg); 
-} 
-// ----------------------------------------------------
-
-void Myprintf2(char* format,...) 
-{ 
-	char *traverse; 
-	unsigned int i; 
-	char *s; 
-	long long l;
-	int k = 0;
-	
-	//Module 1: Initializing Myprintf's arguments 
-	va_list arg; 
-	va_start(arg, format); 
-	traverse = format;
-	char* t = arg;
-
-
-	while(*traverse != '\0')
-	{
-		while( *traverse != '%' ) 
-		{ 
- 			ft_putchar(*traverse);
-			traverse++; 
-		} 
-
-		traverse++; 
-		
-		if (*traverse == '0')
-		{
-			traverse++;
-			while (*traverse >= '0' && *traverse <= '9')
-			{
-				int h = ft_atoi(traverse);
-				while(h > 0)
-				{
-					ft_putchar('0');
-					h--;
-				}
-				traverse++;
-				
-			}
-			
-		}
-
-		if (*traverse == '.')
-		{
-			traverse++;
-			while (*traverse >= '0' && *traverse <= '9')
-			{
-				int h = ft_atoi(traverse);
-				while(h > 0)
-				{
-					ft_putchar('0');
-					h--;
-				}
-				traverse++;
-				
-			}
-			
-		}
-		if (*traverse == '%')
-		{
-			i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
-			ft_putchar('%');
-		}
-		if (*traverse == 'c')
-		{
-			i = va_arg(arg,int); //Fetch Hexadecimal representation
-			ft_putchar(i);
-		}
-		if (*traverse == 's')
-		{
-			s = va_arg(arg,char *); //Fetch Hexadecimal representation
-			ft_putstr(s);
-		}
-		if (*traverse == 'i' || *traverse == 'd')
-		{
-			i = va_arg(arg, unsigned int);
-            ft_putstr(ft_itoa_d(i,10));
-		}
-		if (*traverse == 'x')
-		{
-			i = va_arg(arg,long long); //Fetch Hexadecimal representation
-			ft_putstr(format_x(ft_itoa_x(i,16)));
-		}
-		if (*traverse == 'X')
-		{
-			i = va_arg(arg, long long); //Fetch Hexadecimal representation
-			ft_putstr(format_x(ft_toupper(ft_itoa_x(i,16))));
-		}
-		if (*traverse == 'u')
-		{
-			i = va_arg(arg,unsigned int); //Fetch Hexadecimal representation
-			ft_putstr(ft_itoa_x(i,10));
-		}
-		if (*traverse == 'p')
-		{
-			l = va_arg(arg,long long int); //Fetch Hexadecimal representation
-			ft_putstr("0x");
-			ft_putstr(format_x(ft_itoa_x(l,16)));
-		}
-		traverse++;
+		if(*traverse == '\0')
+			break;
 	}
 
 	//Module 3: Closing argument list to necessary clean-up
@@ -513,23 +406,6 @@ void Myprintf2(char* format,...)
 //---------------------------------------------------------------
 int main() 
 { 
-	/*
-	char *c = "0sadsa asdas asda d";
-	printf("\n\n%p\n", &c);
-	Myprintf("\n\n%p", &c);
-	char *p;
-	*(char ***) &p = &c; 
-	p = (char *) &c;
-	printf("\n\n %s", &p);
-	
-	int a =10;
-	int *p = &a;
-	int **pp = &p;
-	printf("addr: %p\n", pp);
-	Myprintf("%p",(long long)pp);
-	//printf("addr: 0x%u", (unsigned)pp);
-	*/
-
 	char *c = "0sadsa asdas asda d";
 	char *p = (char *)&c;
 
@@ -538,9 +414,10 @@ int main()
 
 	int o = 18855;
 
-	printf("\n1 = %2d , 2 = %5d\n ", 1, 22);
-	Myprintf("1 = %d dfddfsf , 2 = %s ", 1, "sss");
-	
+	//printf("\n1 = %d , 2 = %d\n ", 1, 22);
+	//Myprintf("1 = %05d dfddfsf %i ff", 20);
+	//printf("%*.*d\n", 15, -2, 20);
+	Myprintf("%05d", 20);
 	return 0;
 } 
 /*
