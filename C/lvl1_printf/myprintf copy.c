@@ -655,7 +655,7 @@ int		ft_treatment(int c, t_flags flags, va_list args)
 
 //  ----------------------------------------------------------------
 
-int			ft_treat_save(const char *save, va_list args)
+int			ft_treat_save(const char *traverse, va_list args)
 {
 	int			i;
 	t_flags		flags;
@@ -666,18 +666,18 @@ int			ft_treat_save(const char *save, va_list args)
 	while (1)
 	{
 		flags = ft_init_flags();
-		if (!save[i])
+		if (!traverse[i])
 			break ;
-		else if (save[i] == '%' && save[i + 1])
+		else if (traverse[i] == '%' && traverse[i + 1])
 		{
-			i = ft_flag_parse(save, ++i, &flags, args);
-			if (ft_isType(save[i]))
+			i = ft_flag_parse(traverse, ++i, &flags, args);
+			if (ft_isType(traverse[i]))
 				char_count += ft_treatment((char)flags.type, flags, args);
-			else if (save[i])
-				char_count += ft_putchar2(save[i]);
+			else if (traverse[i])
+				char_count += ft_putchar2(traverse[i]);
 		}
-		else if (save[i] != '%')
-			char_count += ft_putchar2(save[i]);
+		else if (traverse[i] != '%')
+			char_count += ft_putchar2(traverse[i]);
 		i++;
 	}
 	return (char_count);
@@ -685,16 +685,16 @@ int			ft_treat_save(const char *save, va_list args)
 
 int			ft_printf(const char *input, ...)
 {
-	const char	*save;
+	const char	*traverse;
 	va_list		args;
 	int			char_count;
 
-	save = ft_strdup(input);
+	traverse = ft_strdup(input);
 	char_count = 0;
 	va_start(args, input);
-	char_count += ft_treat_save(save, args);
+	char_count += ft_treat_save(traverse, args);
 	va_end(args);
-	free((char *)save);
+	free((char *)traverse);
 	return (char_count);
 }
 
@@ -703,5 +703,5 @@ int			ft_printf(const char *input, ...)
 int main()
 {
 	printf("ola sosu o  %d %d\n",5, 10);
-    printf("ola sosu o  %d %d\n",5, 10);
+    ft_printf("ola sossu o  %05d %d\n",5, 10);
 }
