@@ -68,7 +68,7 @@ int		ft_int(int i, t_flags flags)
 		flags.width--;
 		count++;
 	}
-	d_i = ft_itoa(i);
+	d_i = ft_itoaa(i);
 	count += ft_int2(d_i, save_i, flags);
 	free(d_i);
 	return (count);

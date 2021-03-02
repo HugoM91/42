@@ -76,7 +76,7 @@ char	*ft_u_itoa(unsigned int n)
 	return (rtn);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoaa(int n)
 {
 	int		len;
 	char	*rtn;

@@ -48,7 +48,7 @@ char *rtn, int count);
 void				ft_putchar(char c);
 int					ft_putchar2(int c);
 char				*ft_u_itoa(unsigned int n);
-char				*ft_itoa(int n);
+char				*ft_itoaa(int n);
 int					ft_istype(int c);
 int					ft_isflags(int c);
 char				*ft_str_tolower(char *str);
