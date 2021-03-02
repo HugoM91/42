@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_misc.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 10:38:44 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/03/02 10:39:32 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-
-int		ft_isType(int c)
+int		ft_istype(int c)
 {
 	return ((c == 'c') || (c == 's') || (c == 'p') || (c == 'd') || (c == 'i')
 			|| (c == 'u') || (c == 'x') || (c == 'X') || (c == '%'));
 }
 
-int		ft_isFlags(int c)
+int		ft_isflags(int c)
 {
 	return ((c == '-') || (c == ' ') || (c == '0') || (c == '.') || (c == '*'));
 }
@@ -22,7 +33,6 @@ char	*ft_str_tolower(char *str)
 	return (str);
 }
 
-
 int		ft_precs(char *str, int prec)
 {
 	int count;
@@ -32,4 +42,3 @@ int		ft_precs(char *str, int prec)
 		ft_putchar(str[count++]);
 	return (count);
 }
-

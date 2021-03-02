@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_pointer.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 10:45:43 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/03/02 10:47:00 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-char	*treat_base(unsigned long long ull_save, int base,
+char		*treat_base(unsigned long long ull_save, int base,
 char *rtn, int count)
 {
 	while (ull_save != 0)
@@ -38,8 +50,7 @@ char		*ft_ull_base(unsigned long long ull, int base)
 	return (rtn);
 }
 
-
-int	ft_pointer2(char *pointer, t_flags flags)
+int			ft_pointer2(char *pointer, t_flags flags)
 {
 	int count;
 

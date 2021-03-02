@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 10:53:20 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/03/02 10:54:04 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int		ft_estim(long n)
@@ -21,7 +33,7 @@ int		ft_estim(long n)
 	return (estim);
 }
 
-char		*ft_gen(char *rtn, long nbr, int len, int isneg)
+char	*ft_gen(char *rtn, long nbr, int len, int isneg)
 {
 	if (nbr != 0)
 		rtn = malloc(sizeof(char) * (len + 1));
@@ -48,7 +60,7 @@ char		*ft_gen(char *rtn, long nbr, int len, int isneg)
 	return (rtn);
 }
 
-char			*ft_u_itoa(unsigned int n)
+char	*ft_u_itoa(unsigned int n)
 {
 	int		len;
 	char	*rtn;
@@ -64,7 +76,7 @@ char			*ft_u_itoa(unsigned int n)
 	return (rtn);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	int		len;
 	char	*rtn;

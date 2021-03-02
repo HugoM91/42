@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 10:54:12 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/03/02 10:54:17 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
 
 int			ft_printf(const char *format, ...)
@@ -14,4 +26,3 @@ int			ft_printf(const char *format, ...)
 	free((char *)traverse);
 	return (count);
 }
-

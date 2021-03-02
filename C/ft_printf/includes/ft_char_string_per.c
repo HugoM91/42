@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_char_string_per.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 10:52:29 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/03/02 10:53:12 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-
-
 
 int		ft_percent(t_flags flags)
 {
@@ -15,7 +25,6 @@ int		ft_percent(t_flags flags)
 	return (count);
 }
 
-
 int		ft_int4(char *str, t_flags flags)
 {
 	int count;
@@ -27,13 +36,11 @@ int		ft_int4(char *str, t_flags flags)
 		count += ft_precs(str, flags.dot);
 	}
 	else
-	{
 		count += ft_precs(str, ft_strlen(str));
-	}
 	return (count);
 }
 
-int				ft_string(char *str, t_flags flags)
+int		ft_string(char *str, t_flags flags)
 {
 	int count;
 
@@ -52,8 +59,6 @@ int				ft_string(char *str, t_flags flags)
 		count += ft_int4(str, flags);
 	return (count);
 }
-
-
 
 int		ft_char(char c, t_flags flags)
 {

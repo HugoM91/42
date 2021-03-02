@@ -1,8 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_uint.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 10:47:13 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/03/02 10:48:09 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-
-
-int	ft_uint3(char *unsi_int, t_flags flags)
+int		ft_uint3(char *unsi_int, t_flags flags)
 {
 	int count;
 
@@ -13,7 +23,7 @@ int	ft_uint3(char *unsi_int, t_flags flags)
 	return (count);
 }
 
-int	ft_uint2(char *unsi_int, t_flags flags)
+int		ft_uint2(char *unsi_int, t_flags flags)
 {
 	int count;
 
@@ -35,14 +45,13 @@ int	ft_uint2(char *unsi_int, t_flags flags)
 	return (count);
 }
 
-int			ft_uint(unsigned int unsi, t_flags flags)
+int		ft_uint(unsigned int unsi, t_flags flags)
 {
 	char	*unsi_int;
 	int		count;
 
 	count = 0;
-	unsi = (unsigned int)(4294967295 + 1
-				+ unsi);
+	unsi = (unsigned int)(4294967295 + 1 + unsi);
 	if (flags.dot == 0 && unsi == 0)
 	{
 		count += ft_width(flags.width, 0, 0);

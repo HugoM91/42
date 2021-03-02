@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_int.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 10:51:40 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/03/02 10:52:21 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-
-int	ft_int3(char *d_i, int save_i, t_flags flags)
+int		ft_int3(char *d_i, int save_i, t_flags flags)
 {
 	int count;
 
@@ -14,7 +25,7 @@ int	ft_int3(char *d_i, int save_i, t_flags flags)
 	return (count);
 }
 
-int	ft_int2(char *d_i, int save_i, t_flags flags)
+int		ft_int2(char *d_i, int save_i, t_flags flags)
 {
 	int count;
 
@@ -35,7 +46,7 @@ int	ft_int2(char *d_i, int save_i, t_flags flags)
 	return (count);
 }
 
-int			ft_int(int i, t_flags flags)
+int		ft_int(int i, t_flags flags)
 {
 	char	*d_i;
 	int		save_i;

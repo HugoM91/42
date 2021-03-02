@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_hexa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 10:40:23 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/03/02 10:40:40 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int		ft_hexa3(char *hexa, t_flags flags)
@@ -33,7 +45,7 @@ int		ft_hexa2(char *hexa, t_flags flags)
 	return (count);
 }
 
-int				ft_hexa(unsigned int ui, int lower, t_flags flags)
+int		ft_hexa(unsigned int ui, int lower, t_flags flags)
 {
 	char	*hexa;
 	int		count;

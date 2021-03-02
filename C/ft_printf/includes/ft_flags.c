@@ -1,14 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_flags.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 10:39:43 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/03/02 10:40:11 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-
-t_flags		ft_flagMinus(t_flags flags)
+t_flags		ft_flagminus(t_flags flags)
 {
 	flags.minus = 1;
 	flags.zero = 0;
 	return (flags);
 }
 
-t_flags		ft_flagDigit(char c, t_flags flags)
+t_flags		ft_flagdigit(char c, t_flags flags)
 {
 	if (flags.star == 1)
 		flags.width = 0;
@@ -16,7 +27,7 @@ t_flags		ft_flagDigit(char c, t_flags flags)
 	return (flags);
 }
 
-t_flags		ft_flagWidth(va_list args, t_flags flags)
+t_flags		ft_flagwidth(va_list args, t_flags flags)
 {
 	flags.star = 1;
 	flags.width = va_arg(args, int);
@@ -28,7 +39,7 @@ t_flags		ft_flagWidth(va_list args, t_flags flags)
 	return (flags);
 }
 
-int			ft_flagDot(const char *save, int start,
+int			ft_flagdot(const char *save, int start,
 			t_flags *flags, va_list args)
 {
 	int i;

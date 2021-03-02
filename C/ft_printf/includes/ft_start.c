@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_start.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmalaqui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 10:41:27 by hmalaqui          #+#    #+#             */
+/*   Updated: 2021/03/02 10:55:17 by hmalaqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-t_flags     ft_flags(void)
+t_flags	ft_flags(void)
 {
 	t_flags		flags;
 
@@ -13,34 +25,32 @@ t_flags     ft_flags(void)
 	return (flags);
 }
 
-
-int			ft_flagParse(const char *traverse, int i, t_flags *flags, va_list args)
+int		ft_flagparse(const char *tra, int i, t_flags *flags, va_list args)
 {
-	while (traverse[i])
+	while (tra[i])
 	{
-		if (!ft_isdigit(traverse[i]) && !ft_isType(traverse[i])
-		&& !ft_isFlags(traverse[i]))
+		if (!ft_isdigit(tra[i]) && !ft_istype(tra[i])
+		&& !ft_isflags(tra[i]))
 			break ;
-		if (traverse[i] == '0' && flags->width == 0 && flags->minus == 0)
+		if (tra[i] == '0' && flags->width == 0 && flags->minus == 0)
 			flags->zero = 1;
-		if (traverse[i] == '.')
-			i = ft_flagDot(traverse, i, flags, args);
-		if (traverse[i] == '-')
-			*flags = ft_flagMinus(*flags);
-		if (traverse[i] == '*')
-			*flags = ft_flagWidth(args, *flags);
-		if (ft_isdigit(traverse[i]))
-			*flags = ft_flagDigit(traverse[i], *flags);
-		if (ft_isType(traverse[i]))
+		if (tra[i] == '.')
+			i = ft_flagdot(tra, i, flags, args);
+		if (tra[i] == '-')
+			*flags = ft_flagminus(*flags);
+		if (tra[i] == '*')
+			*flags = ft_flagwidth(args, *flags);
+		if (ft_isdigit(tra[i]))
+			*flags = ft_flagdigit(tra[i], *flags);
+		if (ft_istype(tra[i]))
 		{
-			flags->type = traverse[i];
+			flags->type = tra[i];
 			break ;
 		}
 		i++;
 	}
 	return (i);
 }
-
 
 int		ft_treat2(int c, t_flags flags, va_list args)
 {
@@ -67,9 +77,7 @@ int		ft_treat2(int c, t_flags flags, va_list args)
 	return (count);
 }
 
-//  ----------------------------------------------------------------
-
-int			ft_treat(const char *traverse, va_list args)
+int		ft_treat(const char *traverse, va_list args)
 {
 	int			i;
 	t_flags		flags;
@@ -84,8 +92,8 @@ int			ft_treat(const char *traverse, va_list args)
 			break ;
 		else if (traverse[i] == '%' && traverse[i + 1])
 		{
-			i = ft_flagParse(traverse, ++i, &flags, args);
-			if (ft_isType(traverse[i]))
+			i = ft_flagparse(traverse, ++i, &flags, args);
+			if (ft_istype(traverse[i]))
 				count += ft_treat2((char)flags.type, flags, args);
 			else if (traverse[i])
 				count += ft_putchar2(traverse[i]);
