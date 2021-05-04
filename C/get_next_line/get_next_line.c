@@ -1,5 +1,8 @@
 #include <stdio.h>
-
+#include "get_next_line.h"
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 char				*ft_clean_line(char *save, char **line, int r)
 {
